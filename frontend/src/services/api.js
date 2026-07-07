@@ -1,5 +1,6 @@
 const BASE_URL = import.meta.env.VITE_API_URL || 'https://portfolio-backend-beta-eight.vercel.app/api';
 
+
 // Helper for handling fetch responses
 const handleResponse = async (response) => {
   const data = await response.json().catch(() => ({}));
