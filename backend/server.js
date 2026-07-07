@@ -19,7 +19,7 @@ const app = express();
 
 // Enable CORS for frontend applications
 app.use(cors({
-  origin: '*', // Allow all origins in development (Vite 5173, React 3000, etc.)
+  origin: 'https://portfolio-lime-five-10.vercel.app/', // Allow all origins in development (Vite 5173, React 3000, etc.)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
