@@ -18,8 +18,25 @@ connectDB();
 const app = express();
 
 // Enable CORS for frontend applications
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:3000',
+  'https://portfolio-lime-five-10.vercel.app',
+  'https://portfolio-backend-beta-eight.vercel.app'
+];
+
 app.use(cors({
-  origin: 'https://portfolio-lime-five-10.vercel.app/', // Allow all origins in development (Vite 5173, React 3000, etc.)
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, or same-origin) or if origin is in allowedOrigins or in development mode
+    if (!origin || allowedOrigins.includes(origin) || process.env.NODE_ENV !== 'production') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
